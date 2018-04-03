@@ -8,20 +8,22 @@ function checkForPalindromes($str){
 	//echo $str . "\n";
     $reverse_str = strrev($str);
     if ($str == $reverse_str){
-    	echo "\"" . $original_string . "\" is a palindrome!\n";
+    	echo "\"" . $original_string . "\" is a palindrome.\n";
+		fwrite($writefile, "\"" . $original_string . "\" is a palindrome.\n");
     }
 }
 
 $filename="input.txt";
-$file = fopen($filename, "r");
+$readfile = fopen($filename, "r");
+$writefile = fopen("output.txt", "w");
 //$readfile = fread($file, filesize($filename));
 
 //echo $readfile;
 //echo "\n";
 
-while(! feof($file)) {
+while(! feof($readfile)) {
 	//echo fgets($file) . "\n";
-	$line = fgets($file);
+	$line = fgets($readfile);
 	//checkForPalindromes($line);
 
 	$line_array = preg_split('/\s+/', $line);
@@ -29,11 +31,12 @@ while(! feof($file)) {
 		for ($j = $i+1; $j < sizeof($line_array); $j++) {
 			$temp = array_slice($line_array, $i, $j-$i);
 			$temp = implode(" ", $temp);
-			if (strlen($temp) >= 3) {
+			if (strlen($temp) >= 2) {
 				checkForPalindromes($temp);
 			}
 		}
 	}
 }
 
-fclose($file);
+fclose($readfile);
+fclose($writefile);
