@@ -1,6 +1,6 @@
 <?php 
 
-function checkForPalindromes($str){
+function checkForPalindromes($str, $writefile){
 	//echo "Checking " . $str . " for palindromes.\n";
 	$original_string = $str;
 	$str = strtolower($str);
@@ -13,18 +13,11 @@ function checkForPalindromes($str){
     }
 }
 
-$filename="input.txt";
-$readfile = fopen($filename, "r");
+$readfilename="input.txt";
 $writefile = fopen("output.txt", "w");
-//$readfile = fread($file, filesize($filename));
+$lines = file($readfilename);
 
-//echo $readfile;
-//echo "\n";
-
-while(! feof($readfile)) {
-	//echo fgets($file) . "\n";
-	$line = fgets($readfile);
-	//checkForPalindromes($line);
+foreach($lines as $line) {
 
 	$line_array = preg_split('/\s+/', $line);
 	for ($i = 0; $i < sizeof($line_array); $i++) {
@@ -32,11 +25,10 @@ while(! feof($readfile)) {
 			$temp = array_slice($line_array, $i, $j-$i);
 			$temp = implode(" ", $temp);
 			if (strlen($temp) >= 2) {
-				checkForPalindromes($temp);
+				checkForPalindromes($temp, $writefile);
 			}
 		}
 	}
 }
 
-fclose($readfile);
 fclose($writefile);
