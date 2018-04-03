@@ -1,3 +1,7 @@
 Oozy rat in a sanitary zoo.
 example line. not a palindrome.
 Sit on a potato pan Otis!
+This has no palindromes. Above line has palindromes.
+Starts out with no palindromes race car has palindrome in middle
+no beginning palindrome ends in palindrome no x in nixon
+Palindrome within a palindrome line A Toyota’s a Toyota.
