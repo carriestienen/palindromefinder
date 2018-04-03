@@ -1,6 +1,7 @@
 <?php 
 
 function checkForPalindromes($str){
+	//echo "Checking " . $str . " for palindromes.\n";
 	$original_string = $str;
 	$str = strtolower($str);
 	$str = preg_replace('/[^a-z0-9]+/i', '', $str);
@@ -21,7 +22,18 @@ $file = fopen($filename, "r");
 while(! feof($file)) {
 	//echo fgets($file) . "\n";
 	$line = fgets($file);
-	$response = checkForPalindromes($line);
+	//checkForPalindromes($line);
+
+	$line_array = preg_split('/\s+/', $line);
+	for ($i = 0; $i < sizeof($line_array); $i++) {
+		for ($j = $i+1; $j < sizeof($line_array); $j++) {
+			$temp = array_slice($line_array, $i, $j-$i);
+			$temp = implode(" ", $temp);
+			if (strlen($temp) >= 3) {
+				checkForPalindromes($temp);
+			}
+		}
+	}
 }
 
 fclose($file);
