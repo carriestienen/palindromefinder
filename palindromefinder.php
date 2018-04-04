@@ -52,6 +52,7 @@ for($lineindex = 0; $lineindex < sizeof($lines); $lineindex++) {
 
 }
 
+fwrite($writefile, "\n");
 foreach ($palindromes_array as $val){
 	fwrite($writefile, "\"" . $val . "\" is a palindrome.\n");
 }
